@@ -22,7 +22,7 @@ name: Backend CI
 
 on:
   push:
-    branches: [ master, dev, action* ]
+    branches: [ master, test001, action* ]
     paths-ignore:
       - '**.md'
       - 'home/**'
@@ -30,7 +30,7 @@ on:
       - 'script/**'
       - 'material/**'
   pull_request:
-    branches: [ master, dev ]
+    branches: [ master, test001 ]
     paths-ignore:
       - '**.md'
       - 'home/**'
