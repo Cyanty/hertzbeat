@@ -36,6 +36,13 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.dflib</groupId>
+            <artifactId>dflib</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.hertzbeat</groupId>
             <artifactId>hertzbeat-collector-common-e2e</artifactId>

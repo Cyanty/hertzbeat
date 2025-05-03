@@ -27,6 +27,9 @@ import org.apache.hertzbeat.common.entity.job.Metrics;
 import org.apache.hertzbeat.common.entity.job.protocol.JdbcProtocol;
 import org.apache.hertzbeat.common.entity.job.protocol.Protocol;
 import org.apache.hertzbeat.common.entity.message.CollectRep;
+import org.dflib.DataFrame;
+import org.dflib.Printers;
+import org.dflib.Series;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,6 +39,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -95,5 +99,18 @@ public class JdbcCommonCollectE2eTest extends AbstractCollectE2eTest {
             CollectRep.MetricsData metricsData = validateMetricsCollection(metricsDef, metricName, true);
             CollectUtil.getConfigmapFromPreCollectData(metricsData);
         }
+
+        String[] header = {"type", "value"};
+
+
+        DataFrame df1 = DataFrame
+                .foldByRow(header)
+                .ofStream(IntStream.range(1, 10000));
+
+        DataFrame df2 = df1.rows(r -> r.getInt(0) % 2 == 0).select();
+
+        Series<String> s = Series.of("a", "bcd", "ef", "g");
+
+        System.out.println(Printers.tabular.toString(df2));
     }
 }

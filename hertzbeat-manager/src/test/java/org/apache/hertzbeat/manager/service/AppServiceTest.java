@@ -18,6 +18,7 @@
 package org.apache.hertzbeat.manager.service;
 
 import org.apache.hertzbeat.common.entity.manager.Monitor;
+import org.apache.hertzbeat.common.entity.manager.ParamDefine;
 import org.apache.hertzbeat.manager.dao.DefineDao;
 import org.apache.hertzbeat.manager.dao.MonitorDao;
 import org.apache.hertzbeat.manager.service.impl.AppServiceImpl;
@@ -32,6 +33,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -93,5 +95,11 @@ class AppServiceTest {
                 .singletonList(Monitor.builder().id(1L).build()));
         when(warehouseService.queryMonitorMetricsData(anyLong())).thenReturn(Collections.emptyList());
         assertDoesNotThrow(() -> appService.getAllAppHierarchy("en-US"));
+    }
+
+    @Test
+    void getAppHierarchy() {
+        List<ParamDefine> jvm = appService.getAppParamDefines("jvm");
+        System.out.println(jvm);
     }
 }
