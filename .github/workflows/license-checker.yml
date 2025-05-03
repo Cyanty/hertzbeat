@@ -22,9 +22,9 @@ name: License Checker
 
 on:
   push:
-    branches: [ master, dev, action* ]
+    branches: [ master, test001, action* ]
   pull_request:
-    branches: [ master, dev ]
+    branches: [ master, test001 ]
 
 jobs:
   check-license-header:
