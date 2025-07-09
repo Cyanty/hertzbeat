@@ -56,6 +56,8 @@ public interface WarehouseConstants {
         String MEMORY = "memory";
     }
 
+    String BatchInsert = "batch-insert";
+
     String PROMQL = "promql";
 
     String SQL = "sql";
